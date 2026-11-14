@@ -1,0 +1,11 @@
+# Keep plugin settings
+plugins/*/*
+!plugins/*/data.json
+!plugins/automatic-installation-of-plugins/*
+
+# Local workspace state
+workspace.json
+workspace-mobile.json
+community-install-manager-backups
+# no use to export the settings. we just keep the original settings files
+community-plugins-settings.json

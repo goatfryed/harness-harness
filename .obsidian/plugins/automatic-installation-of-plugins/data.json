@@ -1,0 +1,12 @@
+{
+  "loadSettingsOnInstall": true,
+  "loadSettingsOnStartup": false,
+  "autoInstallPlugins": true,
+  "autoEnablePlugins": true,
+  "mergePluginSettings": true,
+  "allowAutoActionsOnMobile": false,
+  "redactSecretsOnExport": true,
+  "extraSecretKeys": "",
+  "syncVaultSetup": true,
+  "logLevel": "error"
+}
