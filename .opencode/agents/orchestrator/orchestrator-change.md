@@ -72,69 +72,62 @@ reference: Input. Issue id or similar
 change-dir: docs/<project>/change/<reference>-<short-title-slug>/
 ```
 
-## Templates
-Check for and use up-to-date templates from `docs/harness/change/` for all documents, whenever you create new documents.
-
 ## Refinement
 
 ### Goal
 
 Decompose a planned product change into small, coherent slices with clear dependencies and meaningful review waves.
 Maintain a living overview plan in `<change-dir>/slices.md` that supports incremental refinement and dependency-driven execution without requiring detailed implementation design upfront.
-Maintain individ
+Maintain living individual slice plans in `<change-dir>/<slice-slug>/slice.md`
 
-### Rules
+### Process
 
-- Scope each slice to one area of concern and a coherent, narrowly defined piece of functionality.
-- Split work that can be implemented independently; combine work when separation adds overhead without material benefit.
-- Define each slice so it can be implemented, tested, and committed as a unit.
-- Record dependencies whenever a slice requires another slice to be completed and committed before it begins. Do not introduce artificial dependencies.
-- Specify outcomes, boundaries, and constraints without prescribing detailed implementation design.
-- Refine slices incrementally. Keep work with unresolved boundaries or dependencies in the horizon.
-- Update the slice plan when new information invalidates existing assumptions, boundaries, or dependencies.
-- Include only current state and constraints in the slice plan; remove and outdated, replaced, historic notes
+Change planning combines product planning, solution design, and slicing as interdependent thinking focuses of the primary agent—not sequential stages. Move among them as new information requires. Refinement is autonomous between requester interactions; use **Review, steer and approve** for feedback and decisions. A question to the requester ends the current turn.
 
-### Workflow
+### Product planning
 
-Split or combine work pragmatically to balance scope, independence, and coordination overhead.
+Establish and elaborate requirements, rules, constraints, and expected outcomes for users, stakeholders, and systems, internal or external. Actor stories are one useful format, not a requirement. Elaborate slice-level requirements as slicing exposes gaps.
 
-Identify prerequisites and represent them in the slice graph. Keep independent work independent.
+### Solution design
 
-For unresolved questions:
-- Refine slice boundaries and dependencies where possible.
-- Run the slice plan through change solution design for architectural decisions, cross-slice constraints, dependency mitigation and validation
-- Introduce exploratory slices for questions requiring concrete work or evidence.
-- Keep insufficiently understood work in the horizon.
+Explore viable approaches and establish the architectural direction needed for successful delivery. Address architectural constraints, cross-slice dependencies and mitigations, validation approaches, and uncertainties or risks that could make slice execution fail. Reduce that risk without prescribing detailed slice designs.
 
-### 3. Define review waves
+### Slicing
 
-Group slices into meaningful outcomes for product-level validation.
+Apply **divide and conquer** to turn requirements and architectural direction into small, coherent units of work. Each slice covers a narrowly defined piece of functionality in one area of concern and can be implemented, tested, and committed as a unit. Split work that can proceed independently; combine it when separation adds more overhead than value.
 
-Review waves are independent of execution scheduling, may overlap, and can span multiple areas of concern. Each has a review purpose and becomes reviewable once its required slices are completed.
+The decomposition is iterative: resolving one part may clarify, constrain, or make possible the definition of another. Refine incrementally, focusing on unblocked or approaching work and deriving necessary enabling slices. Record a dependency only when its prerequisite must be completed and committed; keep independent work independent. Define outcomes, boundaries, and completion expectations—not implementation steps. Feed newly exposed requirements, design questions, dependencies, or uncertainty back into the relevant planning focus.
 
-### 4. Refine upcoming slices
+### Probe boundaries
 
-Prioritize slices whose prerequisites are satisfied or approaching completion.
+Probes are bounded, delegated activities supporting product planning or solution design—not separate thinking focuses. Use them on demand for isolated investigation or candidate artifacts. Classify a probe by its mandate, not by the artifact it produces or the system boundary it examines.
 
-Define their intended outcome, scope, constraints, dependencies, and completion expectations. Leave detailed technical design to slice execution.
+Requirements probes gather evidence about existing requirements and constraints; they do not establish or change them. Solution probes investigate approaches and may propose candidate designs, including designs that raise product or requirement questions; they cannot decide requirements or make binding product decisions. The primary agent evaluates and integrates results in the appropriate planning focus. Probes do not modify the product; experiments belong in spike slices.
 
-### 5. Maintain the plan
+## Artifacts & invariants
 
-Update slices, dependencies, refinement states, horizon, and review waves as implementation and reviews reveal new information.
+- `<change-dir>/change.md`: change description and agreed whole-change human testing and review attention points.
+- `<change-dir>/slices.md`: living slice overview, dependency map, horizon, and review-wave plan.
+- `<change-dir>/<slice-slug>/slice.md`: individual slice scope, state, dependencies, and completion expectations.
 
-## Execution boundary
+### Slice
 
-Slicing defines **what work exists and how it relates**. Execution selects eligible slices based on dependencies, refinement state, capacity, and execution policy.
+The individual slice document is the canonical record of that slice’s scope, state, dependencies, and expected outcome.
 
-## Outputs
+### Horizon
 
-- Living slice map with dependencies and refinement states.
-- Refined slice plans for upcoming work.
-- Horizon for unresolved work.
-- Review waves with meaningful validation outcomes.
+The horizon holds work whose boundaries or dependencies are not understood well enough to define slices. Refine what is understood; use solution design or a probe to resolve questions, and an exploratory slice when evidence requires project changes. Do not treat horizon items as executable slices.
+
+### Review waves
+
+Group slices into meaningful product-validation outcomes. Waves may overlap and span areas of concern; they are independent of execution scheduling and reviewable when their required slices are complete. Assess each wave with the requester: findings or further work return to refinement; approval of the final wave closes the change. Keep the agreed whole-change human testing and review attention points in `change.md`.
+
+Keep plans current and remove superseded notes.
 
 
 ## Orchestrate slice execution
+
+A slice is ready when it is refined, approved, and its dependencies are resolved. Execute each ready slice according to capacity and execution policy; complete and commit prerequisites before dependent slices begin. Detailed slice design belongs here, within the architectural direction from refinement.
 
 ```mermaid
 flowchart TB
