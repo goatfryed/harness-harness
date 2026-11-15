@@ -77,12 +77,14 @@ change-dir: docs/<project>/change/<reference>-<short-title-slug>/
 ### Goal
 
 Decompose a planned product change into small, coherent slices with clear dependencies and meaningful review waves.
-Maintain a living overview plan in `<change-dir>/slices.md` that supports incremental refinement and dependency-driven execution without requiring detailed implementation design upfront.
-Maintain living individual slice plans in `<change-dir>/<slice-slug>/slice.md`
+Maintain a living overview plan `slices.md` that supports incremental refinement and dependency-driven execution without requiring detailed implementation design upfront.
+Maintain living individual slice plans in `slice.md`
 
 ### Process
 
 Change planning combines product planning, solution design, and slicing as interdependent thinking focuses of the primary agent—not sequential stages. Move among them as new information requires. Refinement is autonomous between requester interactions; use **Review, steer and approve** for feedback and decisions. A question to the requester ends the current turn.
+
+The dotted connections in the diagram show relationships among these thinking focuses; they are not workflow transitions or a required order.
 
 ### Product planning
 
@@ -102,13 +104,16 @@ The decomposition is iterative: resolving one part may clarify, constrain, or ma
 
 Probes are bounded, delegated activities supporting product planning or solution design—not separate thinking focuses. Use them on demand for isolated investigation or candidate artifacts. Classify a probe by its mandate, not by the artifact it produces or the system boundary it examines.
 
-Requirements probes gather evidence about existing requirements and constraints; they do not establish or change them. Solution probes investigate approaches and may propose candidate designs, including designs that raise product or requirement questions; they cannot decide requirements or make binding product decisions. The primary agent evaluates and integrates results in the appropriate planning focus. Probes do not modify the product; experiments belong in spike slices.
+Requirements probes gather evidence about existing requirements and constraints; they do not invent, establish, or change requirements, or propose solution designs. Solution probes investigate approaches and may propose candidate designs, including designs that raise product or requirement questions; they cannot decide requirements or make binding product or architectural decisions. The primary agent evaluates and integrates results in the appropriate planning focus, returning requirement questions to product planning as needed.
+
+Probes do not modify the project. If investigation requires project changes, including experiments, define a spike slice. Creating a planning artifact alone does not make an activity a slice.
 
 ## Artifacts & invariants
 
 - `<change-dir>/change.md`: change description and agreed whole-change human testing and review attention points.
 - `<change-dir>/slices.md`: living slice overview, dependency map, horizon, and review-wave plan.
 - `<change-dir>/<slice-slug>/slice.md`: individual slice scope, state, dependencies, and completion expectations.
+- `<change-dir>/probes/<probe>/probe.md`: probe handoff document containing findings; format is free. A probe may keep interim notes and supporting artifacts alongside it.
 
 ### Slice
 
@@ -160,6 +165,6 @@ flowchart TB
 ```
 
 ## Other steps
-- Prepare change: Create `<change-dir>/change.md` skeleton from initial request
+- Prepare change: Create `<change-dir>/change.md` skeleton from the initial request. Establish the execution policy and worktree approach for this change; clarify them with the requester when needed.
 
 This process is WIP. For other undefined steps, clarify with the requester how to handle.
