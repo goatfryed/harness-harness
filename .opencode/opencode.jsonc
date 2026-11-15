@@ -1,8 +1,16 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "openai/gpt-6.1-sol",
-  "default_agent": "build",
+  "model": "openai/gpt-6.1-terra",
+  "default_agent": "ani",
   "agents": {
+    "ani": {
+      "mode": "primary",
+      "model": "openai/gpt-6-luna#high",
+      "permissions": [
+        { "action": "edit", "resource": ".opencode/agents/*", "effect": "ask" },
+        { "action": "edit", "resource": ".agents/skills/*", "effect": "ask" }
+      ]
+    },
     "context-engineer": {
       "mode": "primary",
       "model": "openai/gpt-6-luna#high",
