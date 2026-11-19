@@ -13,6 +13,6 @@
   },
   "postCreateCommand": "bash -- .devcontainer/features/opencode-v2/post-create.sh",
   "installsAfter": [
-    "devcontainers/features/common-utils"
+    "ghcr.io/devcontainers/features/common-utils"
   ]
 }
