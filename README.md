@@ -1,18 +1,20 @@
-# goatfryed's {project} harness
+# Harness maintenance harness
 
-This is an adjustable project harness for development enabling. It covers agentic coding, infrastructure and general utility.
-The harness is multi-purpose. Streamline, specialize and harden it according to your project needs.
+This self-maintaining harness governs development of the general-purpose [goatfryed/harness](https://github.com/goatfryed/harness), including improvements and tests. Additional benchmark and test projects may be added later.
 
 ## Layout
-### General
-- [docs/templates](docs/templates) doc templates
-- [docs/change](docs/change) issue tracking
-- [src](src/) contains the the governed projects to work on
 
-## Supports
-- opencode
-- obsidian
-- devcontainer
+- [src/harness](src/harness/) is a separate checkout of the governed upstream harness.
+- `docs/knowledge/` is a separate checkout of [goatfryed/harness-knowledge](https://github.com/goatfryed/harness-knowledge).
+- [docs/templates](docs/templates/) contains documentation templates.
+- `docs/change/` contains local change material and is not tracked by this repository.
 
-## Init
-See [harness-init](.opencode/commands/harness-init) for instructions how to properly initialize this harness project.
+The governed checkout and knowledge repository are managed independently, not as submodules. On a fresh checkout, clone them into the paths above.
+
+## Supported tools
+
+The existing capabilities are retained, including OpenCode, Obsidian, devcontainers, and Rust development support.
+
+---
+
+Based on [goatfryed/harness](https://github.com/goatfryed/harness).
