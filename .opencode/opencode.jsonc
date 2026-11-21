@@ -11,15 +11,6 @@
         { "action": "edit", "resource": ".agents/skills/*", "effect": "ask" }
       ]
     },
-    "context-engineer": {
-      "mode": "primary",
-      "model": "openai/gpt-6-luna#high",
-      "permissions": [
-        { "action": "subagent", "resource": "context-engineer/editor", "effect": "allow" },
-        { "action": "edit", "resource": ".opencode/agents/*", "effect": "allow" },
-        { "action": "edit", "resource": ".agents/skills/*", "effect": "allow" }
-      ]
-    },
     "blank-responder": {
       "mode": "subagent",
       "permissions": [
@@ -123,7 +114,8 @@
     { "action": "skill", "resource": "ponytail*", "effect": "deny" },
 
     // SAFEGUARDS
-    { "action": "shell", "resource": "sudo *", "effect": "ask" }
+    { "action": "shell", "resource": "sudo *", "effect": "ask" },
+    { "action": "shell", "resource": "git clone *", "effect": "allow" }
   ],
   "websearch": {
     "provider": "openai"
