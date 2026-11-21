@@ -16,6 +16,11 @@
       "permissions": [
         { "action": "*", "resource": "*", "effect": "deny" }
       ]
+    },
+    "coding/ponytail": {
+      "permissions": [
+        { "action": "skill", "resource": "ponytail*", "effect": "allow" }
+      ]
     }
   },
   "permissions": [
