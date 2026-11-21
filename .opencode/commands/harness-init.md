@@ -16,11 +16,11 @@ Ask the user which projects this harness governs. Ask for one or more repositori
 
 ### Side content
 Ask the user which of the following side material should be tracked or is already tracked and setup vcs, if needed:
-- [knowledge](/docs/knowledge)
-- [issues](/docs/issues)
+- `docs/knowledge`
+- `docs/issues`
 
 ### Agent runtime
-If your agent runtime is not opencode, offer the user to run [/harness-adapt](./harness-adapt.md) to adapt this harness to a specific agent runtime.
+If your agent runtime is not opencode, offer the user to run [/harness-convert](./harness-convert.md) to adapt this harness to a specific agent runtime.
 
 ### Streamline harness scope
 See [/harness-streamline](harness-streamline.md).

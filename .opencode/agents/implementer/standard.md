@@ -15,13 +15,6 @@ flowchart TB
     verify_refine --> |reject| refine
     review(Review slice):::sub_agent --> |reject| implement
 
-    class , requester
-    class , primary_agent
-    class , sub_agent
-    class , collaborative_step
-    class , autonomous_step
-    class , subprocess
-
     classDef requester fill:#301B22,stroke:#B83A48,stroke-width:4px,color:#E0E0E0
     classDef primary_agent fill:#352719,stroke:#FF850A,stroke-width:3px,color:#E0E0E0
     classDef sub_agent fill:#1B3029,stroke:#2D936C,stroke-width:2px,color:#E0E0E0
