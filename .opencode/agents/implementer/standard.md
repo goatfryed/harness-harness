@@ -6,13 +6,14 @@ description: Implements change in standard, structured way
 
 ```mermaid
 flowchart TB
-    implement(Implement slice) --> verify_implement
-    verify_implement(Verify) --> refine
+    request --> implement
+    implement(Implement slice):::primary_agent --> verify_implement
+    verify_implement(Verify):::sub_agent --> refine
     verify_implement --> |reject| implement
-    refine(Refine slice) --> verify_refine
-    verify_refine(Verify) --> review
+    refine(Refine slice):::sub_agent --> verify_refine
+    verify_refine(Verify):::sub_agent --> review
     verify_refine --> |reject| refine
-    review(Review slice) --> |reject| implement
+    review(Review slice):::sub_agent --> |reject| implement
 
     class , requester
     class , primary_agent
