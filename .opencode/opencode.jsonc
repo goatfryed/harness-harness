@@ -5,7 +5,11 @@
   "agents": {
     "ani": {
       "mode": "primary",
-      "model": "openai/gpt-6-luna#high"
+      "model": "openai/gpt-6.1-terra"
+    },
+    "harness/agent-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-6-luna"
     },
     "blank-responder": {
       "mode": "subagent",
