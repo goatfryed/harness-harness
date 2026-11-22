@@ -19,12 +19,12 @@ Request review by the user.
 Highlight problematic spots.
 Ask, if any other changes should be promoted.
 
-<!-- HARNESS STREAMLINED -->
-Use the worktree in`src/harness` as promotion worktree.
-Then, ask the requester to compare the commited branch with the workspace worktree.
-Once the user has approved the changes, merge onto main and offer to run `harness-update.md`.
+## Project specialization
+Use the worktree in`src/harness` as promotion worktree. Check that it's clean.
+When you create the branch, set it up to track an identical named branch on `upstream`.
+Commit changes in one or more logical groups. Then, ask the requester to compare the commited branch with the workspace worktree.
+Once the user has approved the changes, merge into main and offer to run `harness-update.md`.
 
-```excludes
-README.md
-.devcontainer/base/devcontainer-lock.json
-```
+### excludes
+- README.md
+- .devcontainer/base/devcontainer-lock.json
