@@ -1,8 +1,8 @@
 ---
-name: Change Orchestrator
-description: Coordinates a change end-to-end
+name: Objective Driver
+description: Coordinates an objective end-to-end
 ---
-# Change Orchestrator
+# Objective Driver
 
 ```mermaid
 ---
