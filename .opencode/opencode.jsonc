@@ -5,11 +5,7 @@
   "agents": {
     "ani": {
       "mode": "primary",
-      "model": "openai/gpt-6-luna#high",
-      "permissions": [
-        { "action": "edit", "resource": ".opencode/agents/*", "effect": "ask" },
-        { "action": "edit", "resource": ".agents/skills/*", "effect": "ask" }
-      ]
+      "model": "openai/gpt-6-luna#high"
     },
     "blank-responder": {
       "mode": "subagent",
@@ -67,6 +63,8 @@
     { "action": "shell", "resource": "git prune*", "effect": "ask" },
     { "action": "shell", "resource": "git gc*", "effect": "ask" },
     { "action": "shell", "resource": "git reflog expire*", "effect": "ask" },
+    { "action": "shell", "resource": "git remote -v *", "effect": "allow" },
+    { "action": "shell", "resource": "git fetch *", "effect": "allow" },
 
     // -- RUST
     { "action": "shell", "resource": "rustc *", "effect": "allow" },
@@ -88,38 +86,25 @@
     { "action": "read", "resource": "*.env.*", "effect": "deny" },
     { "action": "read", "resource": "*.template.env", "effect": "allow" },
     { "action": "read", "resource": "*.secret*", "effect": "allow" },
-    // relevant shed tools are (sym)-linked anyway. so just consume through the linked path
-    { "action": "edit", "resource": ".shed", "effect": "deny" },
-
     { "action": "edit", "resource": "target", "effect": "deny" },
     { "action": "edit", "resource": "docs/*", "effect": "allow" },
     { "action": "edit", "resource": "src/*", "effect": "allow" },
     { "action": "edit", "resource": "README.md", "effect": "allow" },
 
     //// AGENTIC
-    { "action": "edit", "resource": ".agents/*", "effect": "deny" },
-    { "action": "edit", "resource": ".agents/memories/*", "effect": "allow" },
-    { "action": "edit", "resource": ".agents/notes/*", "effect": "allow" },
-    { "action": "edit", "resource": ".agents/sessions/*", "effect": "allow" },
-    { "action": "edit", "resource": ".opencode/*", "effect": "deny" },
-    { "action": "edit", "resource": ".opencode/*", "effect": "deny" },
-    { "action": "read", "resource": ".agents/*", "effect": "allow" },
-    { "action": "read", "resource": ".opencode/*", "effect": "allow" },
-
-    // MCP
-    { "action": "intellij_*", "resource": "*", "effect": "deny" },
-    { "action": "intellij_get_*", "resource": "*", "effect": "allow" },
-    { "action": "intellij_git_*", "resource": "*", "effect": "allow" },
-    { "action": "intellij_lint_*", "resource": "*", "effect": "allow" },
-    { "action": "intellij_list_directory_tree", "resource": "*", "effect": "allow" },
-    { "action": "intellij_open_file_in_editor", "resource": "*", "effect": "allow" },
-    { "action": "intellij_reformat_file", "resource": "*", "effect": "allow" },
+    { "action": "edit", "resource": ".agents/*", "effect": "allow" },
+    { "action": "edit", "resource": ".agents/skills/*", "effect": "ask" },
+    { "action": "edit", "resource": ".opencode/*", "effect": "ask" },
+    { "action": "edit", "resource": ".opencode/json*", "effect": "ask" },
+    { "action": "edit", "resource": ".opencode/commands/*", "effect": "ask" },
+    { "action": "edit", "resource": ".opencode/agents/*", "effect": "ask" },
 
     // SKILLS
     { "action": "skill", "resource": "ponytail*", "effect": "deny" },
 
     // SAFEGUARDS
-    { "action": "shell", "resource": "sudo *", "effect": "ask" }
+    { "action": "shell", "resource": "sudo *", "effect": "ask" },
+    { "action": "shell", "resource": "sed *", "effect": "allow" }
   ],
   "websearch": {
     "provider": "openai"
@@ -137,21 +122,6 @@
       }
     }
   ],
-  "mcp": {
-    "intellij": {
-      "enabled": true,
-      "type": "remote",
-      "url": "http://127.0.0.1:64522/stream",
-      "headers": {
-        "IJ_MCP_SERVER_PROJECT_PATH": "/workspace"
-      }
-    },
-    "intellij-index": {
-      "enabled": true,
-      "type": "remote",
-      "url": "http://127.0.0.1:29178/index-mcp/streamable-http"
-    }
-  },
   "experimental": {
     "todo": true
   },
