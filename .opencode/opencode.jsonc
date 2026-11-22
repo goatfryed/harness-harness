@@ -7,10 +7,6 @@
       "mode": "primary",
       "model": "openai/gpt-6.1-terra"
     },
-    "harness/agent-reviewer": {
-      "mode": "subagent",
-      "model": "openai/gpt-6-luna"
-    },
     "blank-responder": {
       "mode": "subagent",
       "permissions": [
@@ -21,6 +17,14 @@
       "permissions": [
         { "action": "skill", "resource": "ponytail*", "effect": "allow" }
       ]
+    },
+    "harness/agent-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-6-luna"
+    },
+    "researcher": {
+      "mode": "all",
+      "model": "openai/gpt-6.1-terra"
     }
   },
   "permissions": [
@@ -110,11 +114,9 @@
     { "action": "shell", "resource": "sudo *", "effect": "ask" },
     { "action": "shell", "resource": "sed *", "effect": "allow" }
   ],
-  "websearch": {
-    "provider": "openai"
-  },
   "plugins": [
-    { "package": "opencode-websearch-addons@1.0.6" },
+    // doesnt work anymore. oauth2 issue?
+    // { "package": "opencode-websearch-addons@1.1.0" },
     {
       "package": "@renjfk/opencode-model-fallback",
       "options": {
