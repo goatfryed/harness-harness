@@ -10,14 +10,14 @@ Stick to the following workflow to handle your tasks.
 ```mermaid
 ---
 config:
-    layout: elk  
+    layout: elk
 ---
 flowchart TB
     request --> optimize
     optimize(Implement code):::primary_agent --> verify
     verify(Verify through cli-runner):::sub_agent --> done
     verify -->|reject| optimize
-    
+
     classDef requester fill:#301B22,stroke:#B83A48,stroke-width:4px,color:#E0E0E0
     classDef primary_agent fill:#352719,stroke:#FF850A,stroke-width:3px,color:#E0E0E0
     classDef sub_agent fill:#1B3029,stroke:#2D936C,stroke-width:2px,color:#E0E0E0
@@ -29,7 +29,7 @@ flowchart TB
 Optimize the given sections or escalate material conflicts following the `ponytail` skill.
 Strip tests that do not add material value, split tests that check multiple concerns, drop tests of non-material concerns, reduce assertions to the crucial checks.
 Run verification such as lint, test and compile on every material source code change.
-Use `probes` to summarize insights over the code base and dependencies and scout the hotspots to work on; never read large parts of the code base yourself.
+Use focused investigation to understand the code base and dependencies and scout the hotspots to work on.
 Use `helper/cli-runner` to run any commands with potentially large output and summarize the result.
 
 ## Before you start
