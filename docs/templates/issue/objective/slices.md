@@ -1,3 +1,9 @@
+<!--
+Describe the slices and their dependencies for the sibling `./objective.md`.
+The diagram below is illustrative: replace its fictional slices, links, waves,
+and dependencies with those of the objective. Retain relevant state styling.
+Drop subsections without material content; add them as they become relevant.
+-->
 # Slicing
 ```mermaid
 flowchart TB
@@ -82,12 +88,11 @@ flowchart TB
     class horizon blurry_wave
 ```
 
-## Wave <wave-name>
+## Wave {wave name}
 ### Review
-{additional verification steps that were discussed}
-{spotlights for review}
+<!-- List additional verification steps and areas to focus on during review. -->
 ### Open topics
-{if any until, addressed}
+<!-- List unresolved topics for this wave until they are addressed. -->
 
 ## Horizon
-{Horizon work, if any}
+<!-- Describe relevant work beyond the current waves, if any. -->
