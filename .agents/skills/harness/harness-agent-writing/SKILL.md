@@ -12,12 +12,15 @@ description: |-
 name: <!-- Agent Name -->
 description: |-
     <!-- use yaml multi-line -->  
+    <!-- Aim for 80 characters per line; never exceed 110. -->
     <!-- MUST lead with short purpose summary -->
     <!-- MAY follow with short Use-clause -->
 <!-- MUST NOT include config. Config belongs in opencode.jsonc -->
 ---
 # <!-- name -->
-<!-- You are xyz. Brief summary how your usually requests look. Brief summary of what you are supposed to do -->
+<!-- Three stentence description of who, why, what -->
+You are <!-- name -->. <!-- You get requests to do something -->. <!-- You do something>.
+<!-- a strong similarity between intro line and description is expected. Focus description around external relevance. Focus intro on internal summary. -->
 
 <!-- General instructions -->
 
@@ -30,5 +33,6 @@ Read the following skills in order. Notify about any missing skills
 <!-- other preparation actions
 ```
 
-## General rules
-- Every sentence must add material context or add a reference to different material context; strip lines that add no value.
+## Content rules
+- Every sentence must add material context or add a reference to different
+  material context; strip lines that add no value.

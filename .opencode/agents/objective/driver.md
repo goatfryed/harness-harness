@@ -10,60 +10,41 @@ config:
   layout: elk
 ---
 flowchart TB
-    request --> prepare_change
-    prepare_change(Prepare change) --> refinement
-    
+    request:::state --> prepare_objective
+    prepare_objective(Prepare objective):::current_agent --> coordinate
+    coordinate(Coordinate work):::current_agent
+    coordinate -->|"more work to shape<br/>or plan-level blocker"| slice_objective
+    coordinate -->|"requester decision<br/>or approval needed"| steer_planning
+    coordinate -->|ready slices and capacity| dispatch_slices
+    coordinate -->|"all required slices<br/>for a wave are complete"| test_wave
 
-    subgraph planning [Change planning]
-        subgraph refinement [Refinement]
-            plan_product_change(Plan product change)
-            plan_change_design(Design change solution)
-            refine_slicing(Refine slicing)
-            requirements_probes(Requirements probes)
-            solution_probes(Solution probes)
+    slice_objective("Refine next slice sets<br/>via Objective Slicer"):::subagent_process --> steer_planning
 
-            plan_product_change -.- refine_slicing
-            plan_change_design -.- refine_slicing
-            plan_product_change -.- plan_change_design
+    steer_planning("Review, steer<br/>and approve"):::leader_approval_gate --> coordinate
+    steer_planning -->|"accepted<br/>or withdrawn"| done
 
-            plan_product_change <--> requirements_probes
-            plan_change_design <--> solution_probes
-        end
-
-        steer_planning(Review, steer and approve)
-        steer_planning --> refinement
-        refinement -->|propose| steer_planning
-        refinement -->|escalate| steer_planning
-    end
-    refinement -->|"for each review wave\nwith all slices done"| test_wave
-    steer_planning -->|withdraw| closed
-    
-    execute_slice(Execute slice) <-->|concurrent\nfor each\nready slice| refinement
+    dispatch_slices("Dispatch ready slices<br/>to workers"):::handoff_agent_flow
+    dispatch_slices -->|"as individual slice results<br/>or blockers arrive"| coordinate
 
     subgraph wave_reviewing [Review wave]
-        test_wave(Test wave) --> review_wave
-        review_wave(Review wave) --> assess_change
-        assess_change(Assess wave)
+        test_wave(Test wave):::subagent_utility --> review_wave
+        review_wave(Review wave):::current_agent --> assess_objective
+        assess_objective(Assess wave):::leader_approval_gate
     end
-    review_wave -->|invalid| refinement
-    assess_change -->|final wave\napproved| closed
-    assess_change --> refinement
+    class wave_reviewing leader_owned_steps
+    review_wave -->|invalid| coordinate
+    assess_objective --> coordinate
 
+    done:::state --> retro
+    retro(Retro):::current_agent --> closed
+    closed:::state
 
-    class steer_planning,assess_change requester
-    class prepare_change,plan_product_change,plan_change_design,refine_slicing,review_wave primary_agent
-    class test_wave,requirements_probes,solution_probes sub_agent
-    class planning,execute_slice,wave_reviewing collaborative_step
-    class refinement autonomous_step
-    class requirements_probes,solution_probes,execute_slice subprocess
-
-    classDef requester fill:#301B22,stroke:#B83A48,stroke-width:4px
-    classDef primary_agent fill:#352719,stroke:#FF850A,stroke-width:3px
-    classDef sub_agent fill:#1B3029,stroke:#2D936C,stroke-width:2px
-    classDef collaborative_step fill:#261D16,stroke:#C99052
-    classDef autonomous_step fill:#17251F,stroke:#68A88D
-    classDef subprocess stroke-width:4px,stroke-dasharray:7 4
-    
+    classDef current_agent fill:#30243B,stroke:#A78BCA,stroke-width:2px
+    classDef subagent_process fill:#1E2D3C,stroke:#6495C4,stroke-width:4px,stroke-dasharray:7 4
+    classDef subagent_utility fill:#1B3029,stroke:#2D936C
+    classDef leader_approval_gate fill:#301B22,stroke:#B83A48
+    classDef handoff_agent_flow fill:#301B22,stroke:#B83A48,stroke-width:4px,stroke-dasharray:7 4
+    classDef leader_owned_steps fill:#26191D,stroke:#C47780
 ```
 
 ## Context
@@ -128,41 +109,6 @@ The horizon holds work whose boundaries or dependencies are not understood well 
 Group slices into meaningful product-validation outcomes. Waves may overlap and span areas of concern; they are independent of execution scheduling and reviewable when their required slices are complete. Assess each wave with the requester: findings or further work return to refinement; approval of the final wave closes the change. Keep the agreed whole-change human testing and review attention points in `change.md`.
 
 Keep plans current and remove superseded notes.
-
-
-## Orchestrate slice execution
-
-A slice is ready when it is refined, approved, and its dependencies are resolved. Execute each ready slice according to capacity and execution policy; complete and commit prerequisites before dependent slices begin. Detailed slice design belongs here, within the architectural direction from refinement.
-
-```mermaid
-flowchart TB
-    input --> plan_slice_design
-
-    subgraph slice_design [Change solution design]
-        plan_slice_design(Plan slice solution) --> review_slice_design
-        update_driving_test(Update test)
-        review_slice_design(Review & Refine) --> |steer| plan_slice_design
-        review_slice_design --> reject
-    end
-    review_slice_design --> implement
-    
-    implement(Implement) --> test_slice
-    implement --> |fail| plan_slice_design
-    
-    test_slice(Test slice) --> assess_slice
-    test_slice --> |reject| plan_slice_design
-    assess_slice(Assess slice)
-    assess_slice --> reject
-    
-    class , requester
-
-    classDef requester fill:#301B22,stroke:#B83A48,stroke-width:4px
-    classDef primary_agent fill:#352719,stroke:#FF850A,stroke-width:3px
-    classDef sub_agent fill:#1B3029,stroke:#2D936C,stroke-width:2px
-    classDef collaborative_step fill:#261D16,stroke:#C99052
-    classDef autonomous_step fill:#17251F,stroke:#68A88D
-    classDef subprocess stroke-width:4px,stroke-dasharray:7 4
-```
 
 ## Other steps
 - Prepare change: Create `<change-dir>/change.md` skeleton from the initial request. Establish the execution policy and worktree approach for this change; clarify them with the requester when needed.

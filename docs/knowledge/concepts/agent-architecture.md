@@ -24,17 +24,17 @@
 **reviewer** reviews work and provides feedback
 
 ## agents
-**objective/driver** is a thin controller tasked to bring an objective to completion. utilizes slicer. hands off slices to workers 
+**objective/driver** is a thin controller that drives an objective to completion. delegates planning to the slicer, dispatches slices to workers, and sends plan-level blockers back to the slicer
 
-**objective/slicer** is a smart planner that slices and conquers iteratively. extracts tasks towards the goal, refines them until actionable
+**objective/slicer** iteratively turns fuzzy objectives into actionable slices. isolates key unknowns and creates enabler slices to resolve them, unblock work, and reveal what’s next.
 
-**tasker** is a general purpose worker&synthesizer that plans & builds its solution itself and reviews itself with a second tasker after major work
+**tasker** is a general-purpose worker&synthesizer that plans and builds its own solution. checks it against the task's expectations and gets a second tasker to review major work
 
-**coding/change-worker** is a controller that oversees a well defined code change. utilizes solution-designer and programmer
+**coding/change-worker** is a controller that owns delivery of a well-defined code change. delegates design to the solution-designer and coding to the programmer. verifies it meets task criteria
 
-**coding/solution-designer** is a smart planner that plans and designs the boundaries of an implementation task and synthesizes parts of the solution (e.g. external interfaces)
+**coding/solution-designer** is a smart planner that sets implementation boundaries and designs key parts (e.g. shared interfaces). leaves local decisions to the programmer
 
-**coding/programmer** is a worker&snythesizer that implements an actual change
+**coding/programmer** is a worker&synthesizer that implements a scoped change. owns local decisions, runs relevant checks, and flags anything that needs a redesign or scope change
 
 **coding/spike-worker** is a worker that tests a specific technical uncertainty with a small experiment or throwaway prototype. reports what worked, what didn't, and what remains unknown
 
