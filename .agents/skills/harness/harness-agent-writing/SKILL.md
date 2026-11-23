@@ -4,31 +4,39 @@ description: |-
     Rules for how to write agent definitions
 ---
 
-# How to write *agent*.md-s
+# How to write agent definitions
+
+Write agent definitions that make their purpose and instructions clear to both
+the user and the agent.
+
 ## Basic layout
+
+Follow this structure. Omit Preparation when there are no setup rules; otherwise
+keep it last. Replace placeholders and remove instructional comments from the
+completed definition.
 
 ```md
 ---
-name: <!-- Agent Name -->
+# Keep configuration in opencode.jsonc, not in the agent definition.
+name: <agent name>
+# Use multiline YAML; aim for 80 characters per line, never exceed 110.
+# Lead with a short purpose summary; optionally add when to use the agent.
 description: |-
-    <!-- use yaml multi-line -->  
-    <!-- MUST lead with short purpose summary -->
-    <!-- MAY follow with short Use-clause -->
-<!-- MUST NOT include config. Config belongs in opencode.jsonc -->
+    <description>
 ---
-# <!-- name -->
-<!-- You are xyz. Brief summary how your usually requests look. Brief summary of what you are supposed to do -->
+# {Agent name}
+<!-- Introduce who the agent is, what requests it receives, and what it does in
+three sentences. Keep it aligned with the description: the description focuses
+on external relevance, the introduction on the agent's internal role. -->
+You are {name}. {Requests the agent receives}. {What the agent does}.
 
-<!-- General instructions -->
+<!-- Add the agent's general instructions. -->
 
-<!-- last, if any setup rules -->
 ## Preparation
-Now, before you perform any work towards the request, first
-<!-- in case of skill preload -->
-Read the following skills in order. Notify about any missing skills
-<!-- dash-list of skill names -->
-<!-- other preparation actions
+<!-- Include only when setup is needed; specify required actions before work.
+If preloading skills, list them in order and require notice of any missing skills. -->
 ```
 
-## General rules
-- Every sentence must add material context or add a reference to different material context; strip lines that add no value.
+## Content rules
+- Every sentence must add material context or reference other material context;
+  remove lines that add no value.

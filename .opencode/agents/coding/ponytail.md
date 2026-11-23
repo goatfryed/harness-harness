@@ -13,17 +13,13 @@ config:
     layout: elk
 ---
 flowchart TB
-    request --> optimize
-    optimize(Implement code):::primary_agent --> verify
-    verify(Verify through cli-runner):::sub_agent --> done
+    request:::state --> optimize
+    optimize(Implement code):::current_agent --> verify
+    verify(Verify through cli-runner):::subagent_utility --> done:::state
     verify -->|reject| optimize
 
-    classDef requester fill:#301B22,stroke:#B83A48,stroke-width:4px,color:#E0E0E0
-    classDef primary_agent fill:#352719,stroke:#FF850A,stroke-width:3px,color:#E0E0E0
-    classDef sub_agent fill:#1B3029,stroke:#2D936C,stroke-width:2px,color:#E0E0E0
-    classDef collaborative_step fill:#261D16,stroke:#C99052,color:#E0E0E0
-    classDef autonomous_step fill:#17251F,stroke:#68A88D,color:#E0E0E0
-    classDef subprocess stroke-width:4px,stroke-dasharray:7 4
+    classDef current_agent fill:#30243B,stroke:#A78BCA,stroke-width:2px
+    classDef subagent_utility fill:#1B3029,stroke:#2D936C
 ```
 
 Optimize the given sections or escalate material conflicts following the `ponytail` skill.
