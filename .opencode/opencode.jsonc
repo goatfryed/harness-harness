@@ -112,7 +112,9 @@
 
     // SAFEGUARDS
     { "action": "shell", "resource": "sudo *", "effect": "ask" },
-    { "action": "shell", "resource": "sed *", "effect": "allow" }
+    { "action": "shell", "resource": "sed *", "effect": "allow" },
+    
+    { "action": "external_directory", "resource": "/home/developer/.local/share/opencode/tool-output/*", "effect": "allow" }
   ],
   "plugins": [
     // doesnt work anymore. oauth2 issue?
