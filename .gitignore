@@ -1,5 +1,6 @@
 .local.env
 
-docs/change/
+docs/issue/
+docs/work/
 docs/knowledge/
 src/
