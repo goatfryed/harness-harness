@@ -4,8 +4,7 @@ task-type: <task|change|spike|investigation|research>
 ---
 <!--
 Use this document to define the work; keep it current, not a progress log.
-Record progress and working details in free-form `./{task-type}.notes.md`.
-Summarize the outcome in `./{task-type}.md` when the work is complete.
+If work notes are useful, keep them in free-form `./task.notes.md`.
 Drop subsections without material content; add them as they become relevant.
 -->
 
