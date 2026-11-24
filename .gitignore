@@ -1,5 +1,6 @@
 .local.env
 
-docs/change/
+docs/issue/
+docs/work/
 # Promotion todo: knowledge ignore&track should become an init feature
 src/
