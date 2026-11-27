@@ -27,3 +27,19 @@ An agent can fill more than one role.
 - **Planner:** Defines what work needs to be done, including the boundaries and expected outcomes.
 - **Controller:** Coordinates work by assigning it, tracking results, and escalating decisions.
 - **Worker:** Delivers the outcome of a bounded assignment.
+
+## Project checkouts and worktrees
+
+The primary checkout is the developer's normal workspace for a project.
+Look for it at `src/{project}` or `src/{project}.primary`.
+
+Use the checkout assigned for the task, and do not edit other checkouts unless the developer asks.
+If no checkout is assigned and it is unclear where changes belong, ask before editing.
+
+Create a worktree when a change needs to run alongside other edits or be reviewed and integrated separately.
+Use one worktree per independently integrated change, not per agent.
+Read-only investigations can use an existing checkout.
+
+Keep slice worktrees alongside the primary checkout and name them `src/{project}.{slice-slug}`.
+When assigning work, record the checkout path and starting commit so the developer can inspect and compare changes while work is in progress.
+Keep the worktree until the result is integrated or the developer confirms it can be removed.
