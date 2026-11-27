@@ -22,6 +22,14 @@
       "mode": "subagent",
       "model": "openai/gpt-6-luna"
     },
+    "objective/driver": {
+      "mode":"primary",
+      "model": "openai/gpt-6.2-sol"
+    },
+    "objective/slicer": {
+      "mode": "subagent",
+      "model": "openai/gpt-6.1-terra"
+    },
     "researcher": {
       "mode": "all",
       "model": "openai/gpt-6.1-terra"
