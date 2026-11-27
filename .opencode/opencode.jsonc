@@ -24,11 +24,11 @@
     },
     "objective/driver": {
       "mode":"primary",
-      "model": "openai/gpt-6.2-sol"
+      "model": "openai/gpt-6.1-terra"
     },
     "objective/slicer": {
       "mode": "subagent",
-      "model": "openai/gpt-6.1-terra"
+      "model": "openai/gpt-6.2-sol"
     },
     "researcher": {
       "mode": "all",
