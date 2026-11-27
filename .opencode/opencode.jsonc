@@ -33,6 +33,10 @@
     "researcher": {
       "mode": "all",
       "model": "openai/gpt-6.1-terra"
+    },
+    "reviewer": {
+      "mode": "all",
+      "model": "openai/gpt-6.1-terra"
     }
   },
   "permissions": [
@@ -126,7 +130,10 @@
     { "action": "shell", "resource": "cmp *", "effect": "allow" },
     { "action": "shell", "resource": "exit *", "effect": "allow" },
     { "action": "shell", "resource": "set *", "effect": "allow" },
-    { "action": "shell", "resource": "find *", "effect": "allow" }
+    { "action": "shell", "resource": "find *", "effect": "allow" },
+    { "action": "shell", "resource": "sort *", "effect": "allow" },
+    { "action": "shell", "resource": "rg *", "effect": "allow" },
+    { "action": "shell", "resource": "print *", "effect": "allow" }
   ],
   "plugins": [
     // doesnt work anymore. oauth2 issue?
