@@ -1,6 +1,18 @@
 # AGENTS.md
 ## Shared terminology
 
+### Writing
+
+- **Progress-focused:** Make it easy to see the current state, what matters next,
+  and what action, decision, or question can move the work forward. Keep the
+  context, constraints, and evidence needed to act; leave out detail that does
+  not serve the work.
+
+### Session roles
+
+- **Requester:** Whoever owns the session, human or agent, denoted by the `user` turn.
+  This does not by itself establish developer or objective owner authority.
+
 ### Human roles
 
 - **Developer:** The human using the harness to steer and carry out development work.
@@ -43,3 +55,17 @@ Read-only investigations can use an existing checkout.
 Keep slice worktrees alongside the primary checkout and name them `src/{project}.{slice-slug}`.
 When assigning work, record the checkout path and starting commit so the developer can inspect and compare changes while work is in progress.
 Keep the worktree until the result is integrated or the developer confirms it can be removed.
+
+## Verification
+
+- Choose relevant verification in proportion to the risk of the change.
+  Report what was checked, failures, and material areas left unverified.
+- **Production code:** By default, perform appropriate full validation,
+  including tests and lint, except for shell scripts as noted below.
+- **Shell scripts:** By default, lint only, even when they are production code.
+- **Other material:** By default, use direct review only.
+- Explicit developer requests can authorize additional checks; stricter task
+  constraints still apply. If provided tooling or instructions do not support
+  systematic verification for the material, propose a verification method and
+  confirm it with the developer. Never run scripted ad hoc validation without
+  approval.

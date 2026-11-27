@@ -4,6 +4,8 @@ task-type: <task|change|spike|investigation|research>
 ---
 <!--
 Use this document to define the work; keep it current, not a progress log.
+Keep the whole document **progress-focused**. Omit context and detail that do
+not help the reader understand, act on, decide, or challenge the work.
 If work notes are useful, keep them in free-form `./task.notes.md`.
 Drop subsections without material content; add them as they become relevant.
 -->
