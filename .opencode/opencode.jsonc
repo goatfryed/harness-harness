@@ -124,7 +124,8 @@
     
     { "action": "external_directory", "resource": "/home/developer/.local/share/opencode/tool-output/*", "effect": "allow" },
     { "action": "shell", "resource": "cmp *", "effect": "allow" },
-    { "action": "shell", "resource": "exit *", "effect": "allow" }
+    { "action": "shell", "resource": "exit *", "effect": "allow" },
+    { "action": "shell", "resource": "set *", "effect": "allow" }
   ],
   "plugins": [
     // doesnt work anymore. oauth2 issue?
