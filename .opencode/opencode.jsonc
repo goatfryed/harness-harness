@@ -24,7 +24,7 @@
     },
     "objective/driver": {
       "mode":"primary",
-      "model": "openai/gpt-6.1-driver"
+      "model": "openai/gpt-6.1-terra"
     },
     "objective/slicer": {
       "mode": "subagent",

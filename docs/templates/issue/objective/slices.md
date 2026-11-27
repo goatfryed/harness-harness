@@ -1,5 +1,7 @@
 <!--
 Describe the slices and their dependencies for the sibling `./objective.md`.
+Keep the whole document **progress-focused**. Omit context and detail that do
+not help the reader understand, act on, decide, or challenge the work.
 The diagram below is illustrative: replace its fictional slices, links, waves,
 and dependencies with those of the objective. Retain relevant state styling.
 Drop subsections without material content; add them as they become relevant.
@@ -87,6 +89,14 @@ flowchart TB
     classDef in_review_wave fill:#261D16,stroke:#C99052
     class horizon blurry_wave
 ```
+
+<!-- ⚠️ Human attention needed; use it alone for pending review, even if the
+slice is done. ✅ Done with no attention needed. Otherwise leave unmarked.
+Red is reserved for escalation. Do not include a visible legend.
+Replace the sample status list below with the objective's actual slice statuses. -->
+- ✅ Design Draft
+- ⚠️ Frontend — material review pending
+- Endpoint
 
 ## Wave {wave name}
 ### Review

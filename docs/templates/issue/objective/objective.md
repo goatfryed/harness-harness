@@ -3,6 +3,8 @@ status: <open|backlog|progress|implemented|withdrawn>
 ---
 <!--
 Define the objective and keep it current as the work evolves.
+Keep the whole document **progress-focused**. Omit context and detail that do
+not help the reader understand, act on, decide, or challenge the work.
 Describe its slices and their dependencies in the sibling `./slices.md`.
 Drop subsections without material content; add them as they become relevant.
 -->
